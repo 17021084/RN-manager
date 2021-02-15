@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
-import {Provider} from 'react-redux';
+import {Text, View, Button} from 'react-native';
+import {connect, Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
 import firebase from 'firebase';
 import {Header} from './components/common';
 import LoginForm from './components/LoginForm';
 import reduxThunk from 'redux-thunk';
+import RootNavigation from './navigations/RootNavigation';
 
 //reducer, preload state, enhancer
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-export default class App extends Component {
+class App extends Component {
   componentWillMount() {
     //avoid duplicated error...
     if (!firebase.apps.length) {
@@ -31,9 +32,15 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Header headerText="ManagerApp" />
-        <LoginForm />
+        <RootNavigation />
       </Provider>
     );
   }
 }
+
+// <Provider store={store}>
+//   <Header headerText="ManagerApp" />
+//   <LoginForm />
+// </Provider>
+
+export default App;
