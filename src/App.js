@@ -8,6 +8,7 @@ import {Header} from './components/common';
 import LoginForm from './components/LoginForm';
 import reduxThunk from 'redux-thunk';
 
+//reducer, preload state, enhancer
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 export default class App extends Component {
