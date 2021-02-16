@@ -5,6 +5,12 @@ import {employeeNew} from '../actions/EmployeeActions';
 import {ButtonLearnMore, Card, CardSection, Input} from './common';
 
 class EmployeeCreate extends Component {
+  componentWillUnmount() {
+    console.log('componentWillUnmount B');
+  }
+  componentDidMount() {
+    console.log('did mounth mouth B');
+  }
   state = {};
   onNameChange(name) {
     this.setState({name: name});
@@ -17,7 +23,7 @@ class EmployeeCreate extends Component {
   }
 
   createNewEmployee() {
-    this.props.employeeNew(this.state);
+    this.props.employeeNew(this.state, this.props.user);
   }
   render() {
     return (
@@ -59,5 +65,9 @@ class EmployeeCreate extends Component {
     );
   }
 }
-
-export default connect(null, {employeeNew})(EmployeeCreate);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.auth.user,
+  };
+};
+export default connect(mapStateToProps, {employeeNew})(EmployeeCreate);

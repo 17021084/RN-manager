@@ -4,8 +4,12 @@ import {connect} from 'react-redux';
 import {ButtonLearnMore, Card, CardSection, Input} from './common';
 
 class EmployeeList extends Component {
-  componentDidUpdate() {
+  componentWillMount() {
+    console.log(this.props.employeeList);
     console.log('this.props.employeeList');
+  }
+  componentDidMount() {
+    console.log('did mounth mouth');
   }
   render() {
     return (
